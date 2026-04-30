@@ -5018,8 +5018,21 @@
   ::  latest $raft-* is equivalent to top-level $raft
   ::
   =>  |%
-      +$  raft-any
+      +$  raft-any-load
         $%  [%16 raft-16-raw]
+            [%15 raft-15]
+            [%14 raft-14]
+            [%13 raft-13]
+            [%12 raft-12]
+            [%11 raft-11]
+            [%10 raft-10]
+            [%9 raft-9]
+            [%8 raft-8]
+            [%7 raft-7]
+            [%6 raft-6]
+        ==
+      +$  raft-any
+        $%  [%16 raft-16]
             [%15 raft-15]
             [%14 raft-14]
             [%13 raft-13]
@@ -5033,29 +5046,6 @@
         ==
       +$  raft-16-raw  *
       +$  raft-16      raft
-      ::
-      +$  flow  (map leak [refs=@ud =soak])
-      +$  leak
-        $~  [*pour ~]
-        $:  =pour
-            deps=(set leak)
-        ==
-      +$  pour
-        $%  [%file =path]
-            [%nave =mark]
-            [%dais =mark]
-            [%cast =mars]
-            [%tube =mars]
-            [%vale =path =lobe]
-            [%arch =path =(map path lobe)]
-        ==
-      +$  soak
-        $%  [%cage =cage]
-            [%vase =vase]
-            [%arch dir=(map @ta vase)]
-            [%dais =dais]
-            [%tube =tube]
-        ==
       ::
       +$  raft-16-old
         $:  rom=room-16-old
@@ -5108,6 +5098,29 @@
             ren=rein
         ==
       +$  flue-old  *
+      ::
+      +$  flow  (map leak [refs=@ud =soak])
+      +$  leak
+        $~  [*pour ~]
+        $:  =pour
+            deps=(set leak)
+        ==
+      +$  pour
+        $%  [%file =path]
+            [%nave =mark]
+            [%dais =mark]
+            [%cast =mars]
+            [%tube =mars]
+            [%vale =path =lobe]
+            [%arch =path =(map path lobe)]
+        ==
+      +$  soak
+        $%  [%cage =cage]
+            [%vase =vase]
+            [%arch dir=(map @ta vase)]
+            [%dais =dais]
+            [%tube =tube]
+        ==
       ::
       +$  raft-15
         $+  raft-15
@@ -5544,7 +5557,7 @@
             pew=regs
         ==
       --
-  |=  old=raft-any
+  |=  old=raft-any-load
   |^
   ~>  %spin.['load/clay']
   =?  old  ?=(%6 -.old)   7+(raft-6-to-7 +.old)
@@ -5558,7 +5571,8 @@
   =?  old  ?=(%14 -.old)  15+(raft-14-to-15 +.old)
   =?  old  ?=(%15 -.old)  16+(raft-15-to-16 +.old)
   ?>  ?=(%16 -.old)
-  ..^^$(ruf (fix-raft-16 +.old))
+  =/  raf=raft  (fix-raft-16 +.old)
+  ..^^$(ruf raf)
   ::
   ++  fix-raft-16
     |=  raw=*
