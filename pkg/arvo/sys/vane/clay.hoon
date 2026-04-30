@@ -5019,7 +5019,7 @@
   ::
   =>  |%
       +$  raft-any
-        $%  [%16 raft-16]
+        $%  [%16 raft-16-raw]
             [%15 raft-15]
             [%14 raft-14]
             [%13 raft-13]
@@ -5031,7 +5031,8 @@
             [%7 raft-7]
             [%6 raft-6]
         ==
-      +$  raft-16  raft
+      +$  raft-16-raw  *
+      +$  raft-16      raft
       ::
       +$  flow  (map leak [refs=@ud =soak])
       +$  leak
@@ -5055,6 +5056,58 @@
             [%dais =dais]
             [%tube =tube]
         ==
+      ::
+      +$  raft-16-old
+        $:  rom=room-16-old
+            hoy=(map ship rung-16-old)
+            ran=rang
+            fad=flow
+            mon=(map term beam)
+            hez=(unit duct)
+            cez=(map @ta crew)
+            tyr=(set duct)
+            tur=rock:tire
+            pud=(unit [=desk =yoki])
+            sad=(map ship @da)
+            bug=[veb=@ mas=@]
+        ==
+      +$  room-16-old
+        $:  hun=duct
+            dos=(map desk dojo-16-old)
+        ==
+      +$  dojo-16-old
+        $:  qyx=cult
+            dom=dome-16-old
+            per=regs
+            pew=regs
+            fiz=melt
+            ese=?
+        ==
+      +$  rung-16-old
+        $:  rus=(map desk rede-16-old)
+        ==
+      +$  rede-16-old
+        $:  lim=@da
+            ref=(unit rind)
+            qyx=cult
+            dom=dome-16-old
+            per=regs
+            pew=regs
+            fiz=melt
+        ==
+      +$  dome-16-old
+        $:  let=aeon
+            hit=(map aeon tako)
+            lab=(map @tas aeon)
+            tom=(map tako norm)
+            nor=norm
+            mim=(map path mime)
+            fod=flue-old
+            wic=(map weft yoki)
+            liv=zest
+            ren=rein
+        ==
+      +$  flue-old  *
       ::
       +$  raft-15
         $+  raft-15
@@ -5505,7 +5558,86 @@
   =?  old  ?=(%14 -.old)  15+(raft-14-to-15 +.old)
   =?  old  ?=(%15 -.old)  16+(raft-15-to-16 +.old)
   ?>  ?=(%16 -.old)
-  ..^^$(ruf +.old)
+  ..^^$(ruf (fix-raft-16 +.old))
+  ::
+  ++  fix-raft-16
+    |=  raw=*
+    ^-  raft
+    =/  fresh  (mule |.(;;(raft raw)))
+    ?-  -.fresh
+      %&  p.fresh
+      %|
+        =/  legacy  (mule |.(;;(raft-16-old raw)))
+        ?-  -.legacy
+          %&  (shed-raft-16-caches p.legacy)
+          %|  ~|(%clay-load-raft-16 !!)
+        ==
+    ==
+  ::
+  ++  shed-raft-16-caches
+    |=  raf=raft-16-old
+    ^-  raft
+    :*  (room-16-old-to-room rom.raf)
+        (~(run by hoy.raf) rung-16-old-to-rung)
+        ran.raf
+        mon.raf
+        hez.raf
+        cez.raf
+        tyr.raf
+        tur.raf
+        pud.raf
+        sad.raf
+        bug.raf
+    ==
+  ::
+  ++  room-16-old-to-room
+    |=  rom=room-16-old
+    ^-  room
+    :*  hun.rom
+        (~(run by dos.rom) dojo-16-old-to-dojo)
+    ==
+  ::
+  ++  dojo-16-old-to-dojo
+    |=  doj=dojo-16-old
+    ^-  dojo
+    :*  qyx.doj
+        (dome-16-old-to-dome dom.doj)
+        per.doj
+        pew.doj
+        fiz.doj
+        ese.doj
+    ==
+  ::
+  ++  rung-16-old-to-rung
+    |=  rug=rung-16-old
+    ^-  rung
+    rug(rus (~(run by rus.rug) rede-16-old-to-rede))
+  ::
+  ++  rede-16-old-to-rede
+    |=  red=rede-16-old
+    ^-  rede
+    :*  lim.red
+        ref.red
+        qyx.red
+        (dome-16-old-to-dome dom.red)
+        per.red
+        pew.red
+        fiz.red
+    ==
+  ::
+  ++  dome-16-old-to-dome
+    |=  dom=dome-16-old
+    ^-  dome
+    :*  let.dom
+        hit.dom
+        lab.dom
+        tom.dom
+        nor.dom
+        mim.dom
+        wic.dom
+        liv.dom
+        ren.dom
+    ==
   ::
   ::  +raft-6-to-7: delete stale ford caches (they could all be invalid)
   ::
